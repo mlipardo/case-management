@@ -1,14 +1,13 @@
 pipeline {
     agent none 
     stages {
-        stage('Example Build') {
-            
+        stage('Build') {
+            agent { dockerfile true }
             steps {
                 echo 'Hello, RailsImage'
-                
             }
         }
-        stage('Example Test') {
+        stage('Test') {
            
             steps {
                 echo 'Hello, Ruby'
