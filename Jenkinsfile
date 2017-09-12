@@ -1,17 +1,8 @@
-node {
-    def app
+ checkout scm
 
-    stage('Clone repository') {
-        /* Let's make sure we have the repository cloned to our workspace */
+   def customImage = docker.build(“my-image:${env.BUILD_ID}“)
 
-        checkout scm
-    }
-
-    stage('Build image') {
-        /* This builds the actual image; synonymous to
-         * docker build on the command line */
-
-        app = docker.build("case-management/hello_world")
-    }
-
+   customImage.inside {
+       sh ‘make test’
+   }
 }
