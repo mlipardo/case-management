@@ -31,6 +31,5 @@ node {
         docker.withRegistry('https://registry.hub.docker.com/r/cwds/casemanagement/', '-u ramuosi -p rg@ramu2016') {
             app.push('latest');
         }
-    
-
+    }
 }
