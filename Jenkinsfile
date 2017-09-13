@@ -29,8 +29,8 @@ node {
          * Pushing multiple tags is cheap, as all the layers are reused. */
        
         sh 'docker login -u ramuosi -p rg@ramu2016 registry.hub.docker.com/r/cwds/casemanagement/'
-            app.push registry.hub.docker.com/r/cwds/casemanagement/
-            app.push("latest")
+        sh 'docker push registry.hub.docker.com/r/cwds/casemanagement/'
+        sh 'docker push("latest")'
         }
     
 
