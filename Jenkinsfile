@@ -28,8 +28,8 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
        
-        sh 'docker login -u ramuosi -p rg@ramu2016 registry.hub.docker.com/r/cwds/casemanagement/'{
-            app.push registry.hub.docker.com/r/cwds/casemanagement/
+        docker.withRegistry('https://registry.hub.docker.com/r/cwds/casemanagement/', '-u ramuosi -p rg@ramu2016') {
+            app.push('latest');
         }
     
 
