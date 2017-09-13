@@ -11,7 +11,7 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-         app = docker.build("case-management/hello_world") 
+         app = docker.build("cwds/casemanagement") 
     }
     
     stage('Test image') {
