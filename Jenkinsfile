@@ -30,7 +30,7 @@ node {
          * Pushing multiple tags is cheap, as all the layers are reused. */
        
         docker.withRegistry('https://hub.docker.com/r/cwds/casemanagement/', '6ba8d05c-ca13-4818-8329-15d41a089ec0') {
-            docker.image(app).push('latest')
+            docker.push('latest')
         }
     }
 }
