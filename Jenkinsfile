@@ -32,5 +32,5 @@ node {
             app.push registry.hub.docker.com/r/cwds/casemanagement/
         }
     
-
+    }
 }
