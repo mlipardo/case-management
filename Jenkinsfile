@@ -1,6 +1,42 @@
-node {
-    def app
+def notifyBuild(String buildStatus, Exception e) {
+  buildStatus =  buildStatus ?: 'SUCCESSFUL'
 
+  // Default values
+  def colorName = 'RED'
+  def colorCode = '#FF0000'
+  def subject = "${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]'"
+  def summary = """*${buildStatus}*: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':\nMore detail in console output at <${env.BUILD_URL}|${env.BUILD_URL}>"""
+  def details = """${buildStatus}: Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]':\n
+    Check console output at ${env.BUILD_URL} """
+  // Override default values based on build status
+  if (buildStatus == 'STARTED') {
+    color = 'YELLOW'
+    colorCode = '#FFFF00'
+  } else if (buildStatus == 'SUCCESSFUL') {
+    color = 'GREEN'
+    colorCode = '#00FF00'
+  } else {
+    color = 'RED'
+    colorCode = '#FF0000'
+    details +="<p>Error message ${e.message}, stacktrace: ${e}</p>"
+    summary +="\nError message ${e.message}, stacktrace: ${e}"
+  }
+
+  // Send notifications
+
+  slackSend channel: "#casemanagement-stream", baseUrl: 'https://hooks.slack.com/services/', tokenCredentialId: 'slackmessagetpt2', color: colorCode, message: summary
+  emailext(
+      subject: subject,
+      body: details,
+      attachLog: true,
+      recipientProviders: [[$class: 'DevelopersRecipientProvider']],
+      to: "Alex.Kuznetsov@osi.ca.gov"
+    )
+}
+
+node('cm-slave') {
+    def app
+    try { 
     stage('Clone repository') {
         /* Let's make sure we have the repository cloned to our workspace */
 
@@ -33,6 +69,14 @@ node {
             app.push('latest')
         }
     }
+    } catch (Exception e)    {
+ 	   errorcode = e
+  	   currentBuild.result = "FAIL"
+  	   notifyBuild(currentBuild.result,errorcode)
+       throw e; 
+    }finally {
+       cleanWs()
+ } 
 }
 
 
