@@ -1,3 +1,6 @@
+
+
+
 node {
     def app
 
@@ -11,15 +14,15 @@ node {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-        app = docker.build("case-management/hello_world")
-    }
+         app = docker.build("case-management/hello_world") 
+           }
     stage('Test image') {
         /* We test our image with a simple smoke test:
          * Run a curl inside the newly-build Docker image */
 
-        app.inside {
+         app.inside {
             sh 'echo "Tested image successfully"'
-        }
+        } 
     }
 
     stage('Push image') {
@@ -28,9 +31,14 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
        
-        sh 'docker login -u ramuosi -p rg@ramu2016 registry.hub.docker.com/r/cwds/casemanagement/'
-        sh 'app.push registry.hub.docker.com/r/cwds/casemanagement/'
-        }
+        withDockerRegistry([credentialsId: ‘6ba8d05c-ca13-4818-8329-15d41a089ec0’]) {
+              app.push()
+              app.push('latest')
+       }
     
-    
+    }
 }
+
+
+
+
