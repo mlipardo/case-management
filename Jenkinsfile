@@ -18,7 +18,7 @@ node {
          * Run a curl inside the newly-build Docker image */
 
         app.inside {
-            sh 'Tested image successfully'
+            sh 'echo "Tested image successfully"'
         }
     }
 
