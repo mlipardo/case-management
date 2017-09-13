@@ -31,7 +31,7 @@ node {
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
        
-        withDockerRegistry([credentialsId: ‘6ba8d05c-ca13-4818-8329-15d41a089ec0’]) {
+        withDockerRegistry([credentialsId: ‘dockerhub’]) {
               app.push()
               app.push('latest')
        }
