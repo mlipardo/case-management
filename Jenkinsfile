@@ -24,7 +24,7 @@ def notifyBuild(String buildStatus, Exception e) {
 
   // Send notifications
 
-  slackSend channel: "#casemanagement-stream", baseUrl: 'https://hooks.slack.com/services/', tokenCredentialId: 'slackmessageCaseManagement', color: colorCode, message: summary
+  slackSend channel: "#casemanagement-stream", baseUrl: 'https://hooks.slack.com/services/', tokenCredentialId: 'slackmessagetpt2', color: colorCode, message: summary
   emailext(
       subject: subject,
       body: details,
@@ -47,7 +47,7 @@ node('cm-slave') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-         app = docker.bild("cwds/casemanagement") 
+         app = docker.build("cwds/casemanagement") 
     }
     
     stage('Test image') {
