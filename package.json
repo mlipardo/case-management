@@ -1,6 +1,9 @@
 {
   "name": "app",
   "private": true,
+  "scripts": {
+    "test": "jest"
+  },
   "dependencies": {
     "@rails/webpacker": "^3.0.1",
     "babel-preset-react": "^6.24.1",
@@ -9,6 +12,7 @@
     "react-dom": "^15.6.1"
   },
   "devDependencies": {
+    "jest": "^21.1.0",
     "webpack-dev-server": "^2.8.1"
   }
 }
