@@ -24,13 +24,13 @@ def notifyBuild(String buildStatus, Exception e) {
 
   // Send notifications
 
-  slackSend channel: "#casemanagement-stream", baseUrl: 'https://hooks.slack.com/services/', tokenCredentialId: 'slackmessagetpt2', color: colorCode, message: summary
+  slackSend channel: "#casemanagement-stream", baseUrl: 'https://hooks.slack.com/services/', tokenCredentialId: 'slackmessageCaseManagement', color: colorCode, message: summary
   emailext(
       subject: subject,
       body: details,
       attachLog: true,
       recipientProviders: [[$class: 'DevelopersRecipientProvider']],
-      to: "Alex.Kuznetsov@osi.ca.gov"
+      to: "ramu.kammagani@osi.ca.gov"
     )
 }
 
@@ -70,15 +70,14 @@ node('cm-slave') {
         }
     }
     } catch (Exception e)    {
- 	   errorcode = e
-  	   currentBuild.result = "FAIL"
-  	   notifyBuild(currentBuild.result,errorcode)
+       errorcode = e
+       currentBuild.result = "FAIL"
+       notifyBuild(currentBuild.result,errorcode)
        throw e; 
     }finally {
        cleanWs()
  } 
 }
-
 
 
 
