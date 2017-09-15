@@ -47,7 +47,7 @@ node('cm-slave') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
 
-         app = docker.build("cwds/casemanagement") 
+         app = doker.build("cwds/casemanagement") 
     }
     
     stage('Test image') {
