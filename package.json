@@ -3,7 +3,9 @@
   "private": true,
   "scripts": {
     "test": "jest",
-    "test:watch": "jest --watch"
+    "test:watch": "jest --watch",
+    "prettier": "prettier --config ./my/.prettierrc",
+    "prettier:list": "prettier --list-different --config ./.prettierrc \"app/javascript/**/*.js*\""
   },
   "dependencies": {
     "@rails/webpacker": "^3.0.1",
@@ -16,6 +18,7 @@
   },
   "devDependencies": {
     "jest": "^21.1.0",
+    "prettier": "^1.7.0",
     "webpack-dev-server": "^2.8.1"
   }
 }
