@@ -74,7 +74,7 @@ node('cm-slave') {
          * First, the incremental build number from Jenkins
          * Second, the 'latest' tag.
          * Pushing multiple tags is cheap, as all the layers are reused. */
-        sh 'docker stop casemanagement-test; docker rm casemanagement-test'
+        sh 'docker stop casemanagement-test || exit 0; docker rm casemanagement-test || exit 0'
         withDockerRegistry([credentialsId: '6ba8d05c-ca13-4818-8329-15d41a089ec0']) {
           sh 'docker pull cwds/casemanagement '
           sh 'docker run -p 8080:3000 --name casemanagement-test -e APP_NAME=casemanagement cwds/casemanagement'
