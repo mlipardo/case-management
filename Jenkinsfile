@@ -77,7 +77,7 @@ node('cm-slave') {
         sh 'docker stop casemanagement-test || exit 0; docker rm casemanagement-test || exit 0'
         withDockerRegistry([credentialsId: '6ba8d05c-ca13-4818-8329-15d41a089ec0']) {
           sh 'docker pull cwds/casemanagement '
-          sh 'docker run -p 8080:3000 --name casemanagement-test -e APP_NAME=casemanagement cwds/casemanagement'
+          sh 'docker run -d -p 8080:3000 --name casemanagement-test -e APP_NAME=casemanagement cwds/casemanagement'
         }
     }
 
