@@ -23,7 +23,7 @@ WORKDIR /app
 
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler && bundle install --jobs 20 --retry 5
-RUN $(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)
+RUN /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 RUN brew install node
 RUN brew install yarn
 RUN npm -v
