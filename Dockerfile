@@ -1,5 +1,4 @@
 FROM ruby:2.3.3
-FROM node:8.2
 
 
 # Install apt based dependencies required to run Rails as
@@ -25,7 +24,10 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler && bundle install --jobs 20 --retry 5
 RUN apt-get update
-
+RUN apt-get install curl
+RUN sudo apt-get --assume-yes install nodejs
+RUN curl -sL https://deb.nodesource.com/setup_4.x | bash
+RUN node -v
 
 # Copy the main application.
 COPY . ./
