@@ -25,10 +25,7 @@ WORKDIR /app
 COPY Gemfile Gemfile.lock ./
 RUN gem install bundler && bundle install --jobs 20 --retry 5
 RUN apt-get update
-RUN apt-get install curl
-RUN curl -sL https://deb.nodesource.com/setup_4.x | bash
-RUN apt-get install nodejs
-RUN node -v
+
 
 # Copy the main application.
 COPY . ./
