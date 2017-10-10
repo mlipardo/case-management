@@ -1,4 +1,5 @@
 FROM ruby:2.3.3
+FROM node:8.2
 
 
 # Install apt based dependencies required to run Rails as
