@@ -54,7 +54,7 @@ node('cm-slave') {
 
          app.inside {
 
-            sh 'yarn run lint'
+            sh 'npm run lint'
         }
     }
 
