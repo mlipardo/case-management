@@ -43,15 +43,6 @@ node('cm-slave') {
         checkout scm
     }
 
-    stage('Lint') {
-
-      app.inside {
-
-      sh 'yarn run lint'
-       
-      }
-    }
-
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
@@ -59,6 +50,14 @@ node('cm-slave') {
          app = docker.build("cwds/casemanagement") 
     }
     
+    stage('Lint') {
+
+         app.inside {
+
+            sh 'yarn run lint'
+        }
+    }
+
     stage('Test image') {
         /* We test our image with a simple smoke test:
          * Run a curl inside the newly-build Docker image */
