@@ -43,6 +43,15 @@ node('cm-slave') {
         checkout scm
     }
 
+    stage('Lint') {
+
+      app.inside {
+
+      sh 'yarn run lint'
+       
+      }
+    }
+
     stage('Build image') {
         /* This builds the actual image; synonymous to
          * docker build on the command line */
