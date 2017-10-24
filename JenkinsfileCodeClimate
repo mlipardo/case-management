@@ -9,18 +9,15 @@ node {
         checkout scm
       }
       stage('Build Docker Image') {
-        sh 'pwd'
-        sh 'ls -l'
         app = docker.build("${DOCKER_GROUP}/${DOCKER_IMAGE}:${env.BUILD_ID}")
-        sh 'docker'
       }
-      app.withRun("-e CI=true") { cm ->
+      app.withRun("-e CI=true") { container ->
         stage('Lint') {
-          sh "docker exec -t ${cm.id} yarn lint"
+          sh "docker exec -t ${container.id} yarn lint"
         }
         stage('Unit Test') {
-          sh "docker exec -t ${cm.id} bundle exec rspec"
-            sh "docker exec -t ${cm.id} yarn run test"
+          sh "docker exec -t ${container.id} bundle exec rspec"
+          sh "docker exec -t ${container.id} yarn run test"
         }
       }
     } catch(Exception e) {
