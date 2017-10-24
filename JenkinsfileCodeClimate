@@ -3,27 +3,25 @@ DOCKER_IMAGE = 'casemanagement'
 DOCKER_NAME = 'cm-latest'
 
 node {
-    def app
+  def app
     try {
-        stage('Checkout') {
-            checkout scm
+      stage('Checkout') {
+        checkout scm
+      }
+      stage('Build Docker Image') {
+        app = docker.build("${DOCKER_GROUP}/${DOCKER_IMAGE}:${env.BUILD_ID}")
+      }
+      app.withRun("-e CI=true") { cm ->
+        stage('Lint') {
+          sh "docker exec -t ${cm.id} yarn lint"
         }
-        stage('Build Docker Image') {
-            app = docker.build("${DOCKER_GROUP}/${DOCKER_IMAGE}:${env.BUILD_ID}")
+        stage('Unit Test') {
+          sh "docker exec -t ${cm.id} bundle exec rspec"
+            sh "docker exec -t ${cm.id} yarn run test"
         }
-        app.withRun("-e CI=true") { cm ->
-            stage('Lint') {
-                sh "docker exec -t ${cm.id} yarn lint"
-            }
-            stage('Unit Test') {
-                sh "docker exec -t ${cm.id} bundle exec rspec"
-                sh "docker exec -t ${cm.id} yarn run test"
-            }
-        }
+      }
     } catch(Exception e) {
-       currentBuild.result = "FAILURE"
-       throw e
-    } finally {
-        cleanWs()
+      currentBuild.result = "FAILURE"
+        throw e
     }
 }
