@@ -5,9 +5,6 @@ DOCKER_NAME = 'cm-latest'
 node {
   def app
     try {
-      stage('Checkout') {
-        checkout scm
-      }
       stage('Build Docker Image') {
         app = docker.build("${DOCKER_GROUP}/${DOCKER_IMAGE}:${env.BUILD_ID}")
       }
