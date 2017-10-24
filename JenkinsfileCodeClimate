@@ -17,7 +17,7 @@ def notify(String status) {
     )
 }
 
-pipeline {
+node {
     def app
     try {
         stage('Checkout') {
