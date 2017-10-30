@@ -15,4 +15,4 @@ Start development server:
 ```sh
 foreman start -f Procfile.dev
 ```
-All done.
+done.
