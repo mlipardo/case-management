@@ -16,4 +16,4 @@ Start development server:
 foreman start -f Procfile.dev
 ```
 
-Testing triggers, again, and one more.
+Testing triggers, again, and one more, and again.
