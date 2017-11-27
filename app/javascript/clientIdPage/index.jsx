@@ -3,6 +3,6 @@ import ReactDOM from 'react-dom';
 import ClientIdPage from './clientIdPage';
 import './stylesheets/clientidpage.scss';
 
-const clientId = document.body.appendChild(document.createElement('div'));
+const clientId = document.getElementById('root');
 
 ReactDOM.render(<ClientIdPage />, clientId);
