@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "prettier:check": "prettier --list-different --config ./.prettierrc \"app/javascript/**/*.js?(x)\"",
-    "test": "jest --env=jsdom",
+    "test": "jest --env=jsdom --coverage",
     "lint:test": "eslint app/javascript",
     "lint:configtest": "eslint --print-config .eslintrc.js | eslint-config-prettier-check",
     "lint": "npm-run-all lint:test lint:configtest",
@@ -20,7 +20,8 @@
     "enzyme-adapter-react-16": "^1.0.4",
     "prop-types": "^15.6.0",
     "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react-dom": "^16.0.0",
+    "react-wood-duck": "^0.1.34"
   },
   "devDependencies": {
     "babel-cli": "^6.26.0",
