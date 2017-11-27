@@ -43,16 +43,16 @@ export default class ClientIdPage extends React.Component {
           <SideNav content={sideNavContent} columnWidth={sideNavColumnWidth}>
             {this.props.children}
           </SideNav>
-          <div className="col-md-8 col-md-offset-3 col-xs-12">
+          <div className="col-md-9 col-md-offset-3 col-xs-12">
             <Cards cardHeaderText="Client Information" />
           </div>
-          <div className="col-md-8 col-md-offset-3 col-xs-12">
+          <div className="col-md-9 col-md-offset-3 col-xs-12">
             <Cards cardHeaderText="Safety Alert Information" />
           </div>
-          <div className="col-md-8 col-md-offset-3 col-xs-12">
+          <div className="col-md-9 col-md-offset-3 col-xs-12">
             <Cards cardHeaderText="Additional Client Information" />
           </div>
-          <div className="col-md-8 col-md-offset-3 col-xs-12" id="tom">
+          <div className="col-md-9 col-md-offset-3 col-xs-12">
             <Cards cardHeaderText="Ethinicity" />
           </div>
         </div>
