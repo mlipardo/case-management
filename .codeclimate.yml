@@ -9,8 +9,6 @@ engines:
     enabled: true
     config:
       languages:
-      - ruby
-      - javascript
          javascript:
            mass_threshold: 50
   eslint:
