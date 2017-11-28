@@ -9,7 +9,6 @@ engines:
     enabled: true
     config:
       languages:
-      languages:
       - ruby
       - javascript
          javascript:
