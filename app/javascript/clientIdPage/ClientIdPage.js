@@ -22,13 +22,13 @@ export default class ClientIdPage extends React.Component {
           },
           {
             type: 'navLink',
-            text: 'Additional Client Information',
+            text: 'Other Client Information',
             href: '#',
             preIcon: 'fa fa-user',
           },
           {
             type: 'navLink',
-            text: 'Ethinicity',
+            text: 'Race & Ethinicity',
             href: '#',
             preIcon: 'fa fa-user',
           },
