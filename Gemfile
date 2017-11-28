@@ -37,6 +37,7 @@ gem 'jbuilder', '~> 2.5'
 # gem 'capistrano-rails', group: :development
 #
 group :test do
+  gem 'rails-controller-testing'
   gem 'rspec'
 end
 
@@ -45,6 +46,8 @@ group :development, :test do
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '~> 2.13'
+  gem 'pry'
+  gem 'pry-byebug'
   gem 'rspec-rails'
   gem 'selenium-webdriver'
 end
